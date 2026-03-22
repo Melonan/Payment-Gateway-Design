@@ -29,7 +29,7 @@ class TestPaymentsRepository:
         assert result.id == payment_id
         assert result.status == PaymentStatus.AUTHORIZED
         assert result.amount == 1000
-        assert result.expiry_year == 2023
+        assert result.expiry_year == 2030
 
     def test_get_nonexistent_payment_returns_none(self):
         """get a nonexist resp"""
