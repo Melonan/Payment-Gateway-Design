@@ -23,7 +23,6 @@ class TestValidatePaymentRequest:
 
     # Valid workflow
     def test_valid_request_returns_no_errors(self):
-        """所有字段都合法时，应该返回空列表"""
         request = _make_request()
         errors = validate_payment_request(request)
         assert errors == []
@@ -31,13 +30,13 @@ class TestValidatePaymentRequest:
     # card number validation
     def test_card_number_too_short(self):
         """ less than 14 digits """
-        request = _make_request(card_number="1234567890123")  # 13 位
+        request = _make_request(card_number="1234567890123")  # 13 
         errors = validate_payment_request(request)
         assert any("card_number" in e for e in errors)
 
     def test_card_number_too_long(self):
         """ more than 19 digits"""
-        request = _make_request(card_number="12345678901234567890")  # 20 位
+        request = _make_request(card_number="12345678901234567890")  # 20 
         errors = validate_payment_request(request)
         assert any("card_number" in e for e in errors)
 

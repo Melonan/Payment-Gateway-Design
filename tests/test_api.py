@@ -142,7 +142,14 @@ class TestPostPayment:
         assert response.status_code == 422
         assert response.json()["detail"]["status"] == "Rejected"
 
+    def test_missing_field_returns_422(self):
+        """POST with missing required field -> HTTP 422 (FastAPI auto-validation)"""
+        client = _create_test_client()
+        body = {"card_number": "12345678901234567"}  # missing other fields
 
+        response = client.post("/api/payments", json=body)
+
+        assert response.status_code == 422
 
 
 class TestGetPayment:

@@ -9,7 +9,7 @@ from payment_gateway_api.service import PaymentService
 
 app = FastAPI()
 
-# create service
+# create service --- with 2 dependency : repo; bank;
 repository = PaymentsRepository()
 bank_client = BankClient(base_url="http://localhost:8080")
 payment_service = PaymentService(repository=repository, bank_client=bank_client)
