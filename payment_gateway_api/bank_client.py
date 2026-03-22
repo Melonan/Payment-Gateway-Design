@@ -8,9 +8,10 @@ class BankClient:
         self._base_url = base_url
 
     def process_payment(self, request: BankPaymentRequest) -> BankPaymentResponse:
-        response = httpx.post(
-            f"{self._base_url}/payments",
-            json=request.model_dump(), # pydantic's dump , transfer the request to dict
-        )
+        with httpx.Client(proxies={}) as client:  # bypass system proxy 
+            response = client.post(
+                f"{self._base_url}/payments",
+                json=request.dict(), # pydantic's dump , transfer the request to dict
+            )
         response.raise_for_status()
         return BankPaymentResponse(**response.json())

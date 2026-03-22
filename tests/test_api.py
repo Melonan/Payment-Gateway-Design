@@ -95,7 +95,7 @@ class TestPostPayment:
         response = client.post("/api/payments", json=body)
 
         assert response.status_code == 422
-        assert response.json()["detail"]["status"] == "Rejected"
+        assert response.json()["status"] == "Rejected"
 
     def test_rejected_expired_card_returns_422(self):
         """ expiration card -> HTTP 422 + Rejected """
@@ -107,7 +107,7 @@ class TestPostPayment:
         response = client.post("/api/payments", json=body)
 
         assert response.status_code == 422
-        assert response.json()["detail"]["status"] == "Rejected"
+        assert response.json()["status"] == "Rejected"
 
     def test_rejected_invalid_currency_returns_422(self):
         """wrong currency -> HTTP 422 + Rejected"""
@@ -118,7 +118,7 @@ class TestPostPayment:
         response = client.post("/api/payments", json=body)
 
         assert response.status_code == 422
-        assert response.json()["detail"]["status"] == "Rejected"
+        assert response.json()["status"] == "Rejected"
 
     def test_rejected_invalid_cvv_returns_422(self):
         """CVV wrong -> HTTP 422 + Rejected"""
@@ -129,7 +129,7 @@ class TestPostPayment:
         response = client.post("/api/payments", json=body)
 
         assert response.status_code == 422
-        assert response.json()["detail"]["status"] == "Rejected"
+        assert response.json()["status"] == "Rejected"
 
     def test_rejected_zero_amount_returns_422(self):
         """amount wrong -> HTTP 422 + Rejected"""
@@ -140,7 +140,7 @@ class TestPostPayment:
         response = client.post("/api/payments", json=body)
 
         assert response.status_code == 422
-        assert response.json()["detail"]["status"] == "Rejected"
+        assert response.json()["status"] == "Rejected"
 
     def test_missing_field_returns_422(self):
         """POST with missing required field -> HTTP 422 (FastAPI auto-validation)"""

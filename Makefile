@@ -4,8 +4,8 @@ install:
 
 .PHONY: run
 run:
-	@poetry run python main.py
+	@poetry run python3 main.py
 
 .PHONY: test
 test: 
-	@poetry run python -m pytest -vv
+	@poetry run python3 -m pytest -vv

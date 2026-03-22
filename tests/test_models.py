@@ -51,7 +51,7 @@ class TestPostPaymentRequest:
             amount=500,
             cvv="4567",
         )
-        data = request.model_dump()
+        data = request.dict()
         assert data["card_number"] == "12345678901234"
         assert data["amount"] == 500
 
@@ -82,7 +82,7 @@ class TestPostPaymentResponse:
             currency="EUR",
             amount=200,
         )
-        json_data = response.model_dump()
+        json_data = response.dict()
         assert json_data["status"] == PaymentStatus.DECLINED
 
 

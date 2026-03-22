@@ -14,7 +14,8 @@ from payment_gateway_api.service import PaymentService
 
 def _simulator_is_running() -> bool:
     try:
-        httpx.get("http://localhost:8080", timeout=2)
+        with httpx.Client(proxies={}) as client:
+            client.get("http://localhost:8080", timeout=2)
         return True
     except Exception:
         return False
@@ -140,4 +141,4 @@ class TestEndToEnd:
         })
 
         assert response.status_code == 422
-        assert response.json()["detail"]["status"] == "Rejected"
+        assert response.json()["status"] == "Rejected"

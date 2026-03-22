@@ -1,3 +1,4 @@
+import json
 from uuid import UUID
 
 from fastapi import APIRouter, Depends, HTTPException, Request
@@ -24,9 +25,9 @@ def post_payment(
     result = service.process_payment(payment_request)
 
     if result.status == PaymentStatus.REJECTED:
-        raise HTTPException(
+        return JSONResponse(
             status_code=422,  # Unprocessable Entity , format is correct, could not be processed
-            detail=result.model_dump(mode="json")
+            content=json.loads(result.json()),
         )
 
     # return PostPaymentResponse

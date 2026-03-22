@@ -17,4 +17,15 @@ This is the Python version of the Payment Gateway challenge. If you haven't alre
 └── tests/ - folder for tests
 ```
 
-Feel free to change the structure of the solution, use a different test library etc.
+## Design Framework
+
+This project uses a simple layered design. 
+The routes handle HTTP requests
+The service contains the payment logic
+The bank client talks to the bank simulator
+The repository stores payment records in memory.
+
+## Test and Run
+Install dependencies with `make install`.
+Start the bank simulator with `docker-compose up -d`, then run the API with `make run`.
+Run all tests with `make test`. If you want to run the integration tests, make sure the bank simulator is running on port `8080`.
