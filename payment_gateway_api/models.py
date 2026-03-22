@@ -1,9 +1,8 @@
 # Data Models for Payment Process Request/Response
-
 from enum import Enum
 from uuid import UUID
-from pydantic import BaseModel
 # inheritate from baseModel, so the requst and resp could create obj from dic
+from pydantic import BaseModel 
 
 class PaymentStatus(str, Enum):
     AUTHORIZED = "Authorized"
@@ -32,7 +31,6 @@ class PostPaymentResponse(BaseModel):
     currency: str
     amount: int
 
-
 class BankPaymentRequest(BaseModel):
     """request we send to the bank side"""
     card_number: str
@@ -40,7 +38,6 @@ class BankPaymentRequest(BaseModel):
     currency: str
     amount: int
     cvv: str
-
 
 class BankPaymentResponse(BaseModel):
     """response from bank side"""

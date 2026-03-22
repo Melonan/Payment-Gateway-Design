@@ -1,6 +1,5 @@
 import uuid
 from typing import Optional
-
 from payment_gateway_api.bank_client import BankClient
 from payment_gateway_api.models import (
     BankPaymentRequest,
