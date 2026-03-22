@@ -21,7 +21,7 @@ class PostPaymentRequest(BaseModel):
     amount: int
     cvv: str
 
-
+# Response return to Merchant
 class PostPaymentResponse(BaseModel):
     """The payment result we return to the merchant (also used for GET queries). """
     id: UUID

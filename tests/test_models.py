@@ -47,7 +47,7 @@ class TestPostPaymentRequest:
             card_number="12345678901234",
             expiry_month=6,
             expiry_year=2028,
-            currency="GBP",
+            currency="CNY",
             amount=500,
             cvv="4567",
         )
@@ -91,7 +91,7 @@ class TestBankPaymentRequest:
         request = BankPaymentRequest(
             card_number="2222405343248877",
             expiry_date="04/2025",
-            currency="GBP",
+            currency="CNY",
             amount=100,
             cvv="123",
         )
